@@ -6,8 +6,7 @@
 # example ：./build_docker_image_tool.sh /Users/xxx/xxx/xxx/xxx xxx master "mvn clean package" xxx/xxx
 
 # 从github上下载该文件
-curl -L -o build_docker_image_tool.sh https://raw.githubusercontent.com/xxx/xxx/master/build_docker_image_tool.sh
-
+curl -L -o build_docker_image_tool.sh https://raw.githubusercontent.com/QuietSugar/note-shell/master/docker/build_docker_image_tool.sh
 
 
 # 定义方法
