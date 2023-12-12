@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# version 1.0.0
+# version 1.0.1
 # desc  ：构建docker镜像工具
 # usage ：./build_docker_image_tool.sh <directory_name> <expected_branch_name> <command_to_execute> <expected_image_name> <renamed_image_name>
 # example ：./build_docker_image_tool.sh /Users/xxx/xxx/xxx/xxx xxx master "mvn clean package" xxx/xxx
@@ -39,7 +39,7 @@ build_docker_image() {
   # 检查当前分支是否为预期分支
   local current_branch=$(git symbolic-ref --short HEAD)
   if [[ $current_branch != $expected_branch_name ]]; then
-    echo "Error: The current branch is not $expected_branch_name."
+    echo "Error: The current branch is not $expected_branch_name. it is $current_branch."
     exit 1
   fi
 
