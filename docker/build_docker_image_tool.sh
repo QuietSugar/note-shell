@@ -50,13 +50,16 @@ build_docker_image() {
   }
 
 
-  # 判断镜像名称是不是预期的镜像名称
-  # Check if the image exists
-  if docker images --format "{{.Repository}}:{{.Tag}}|{{.CreatedSince}}" | grep -q "^${expected_image_name}|.* seconds ago$"; then
-    echo "Image ${expected_image_name} 存在且是新创建的."
-  else
-    echo "Image ${expected_image_name} 不存在或不是1分钟内创建的."
-  fi
+  # 判断镜像名称是不是预期的镜像名称 CreatedSince 的值情况比较麻烦,可能出现 Less than a second ago 等值,最好不要通过这个方式判断
+  # if docker images --format "{{.Repository}}:{{.Tag}}|{{.CreatedSince}}" | grep -q "^${expected_image_name}|.* second(s)? ago$"; then
+  #   echo "Image ${expected_image_name} 存在且是新创建的."
+  # else
+  #   echo "Image ${expected_image_name} 不存在或不是1分钟内创建的."
+  # fi
+
+  echo "创建的镜像信息如下:"
+  docker images --format "{{.Repository}}:{{.Tag}}|{{.CreatedSince}}" | grep "${expected_image_name}"
+
 
   # 重命名镜像名称
   if [[ -n $expected_image_name && -n $renamed_image_name ]]; then
